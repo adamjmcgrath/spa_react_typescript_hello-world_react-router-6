@@ -1,9 +1,14 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import React from "react";
+import React, { useEffect } from "react";
 import { CodeSnippet } from "src/components/code-snippet";
 
 export const Profile = () => {
   const { user } = useAuth0();
+
+  useEffect(() => {
+    console.log('mount profile');
+    return () => console.log('unmount profile');
+  }, [])
 
   if (!user) {
     return null;
