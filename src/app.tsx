@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import React from "react";
+import React, { useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Footer } from "./components/footer";
 import { Loader } from "./components/loader";
@@ -12,9 +12,11 @@ import { NotFound } from "./pages/not-found";
 import { Profile } from "./pages/profile";
 import { ProtectedPage } from "./pages/protected";
 import { PublicPage } from "./pages/public";
+import { AppContext } from "./ApplicationContext";
 
 export const App: React.FC = () => {
   const { isLoading } = useAuth0();
+  const { toggle } = useContext(AppContext);
 
   if (isLoading) {
     return (

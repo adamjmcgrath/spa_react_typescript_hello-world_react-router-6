@@ -1,6 +1,8 @@
-import { withAuthenticationRequired } from "@auth0/auth0-react";
-import React, { ComponentType } from "react";
-import { Loader } from "./loader";
+import React, {
+  ComponentClass,
+  ComponentType,
+  FunctionComponent
+} from "react";
 
 interface ProtectedRouteProps {
   component: ComponentType;
@@ -9,9 +11,9 @@ interface ProtectedRouteProps {
 export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   component,
 }) => {
-  const Component = withAuthenticationRequired(component, {
-    onRedirecting: () => <Loader />,
-  });
+  const Component = HOC(component);
 
   return <Component />;
 };
+
+const HOC = (Component: ComponentClass | FunctionComponent) => () => <Component/>;
